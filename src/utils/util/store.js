@@ -5,7 +5,7 @@ const keyName = 'APPNAME';
 const store = {}
 
 store.setStore = (params = {}, key) => {
-  if (typeof params == 'string') {
+  if (typeof params === 'string') {
     params = {
       name: params,
       content: key
@@ -20,14 +20,14 @@ store.setStore = (params = {}, key) => {
     type: type,
     datetime: new Date().getTime()
   }
-  if (type != 'session') {
+  if (type !== 'session') {
     window.localStorage.setItem(name, JSON.stringify(obj));
   } else {
     window.sessionStorage.setItem(name, JSON.stringify(obj));
   }
-},
+}
 store.getStore = (params = {}) => {
-  if (typeof params == 'string') {
+  if (typeof params === 'string') {
     params = {
       name: params
     }
@@ -38,8 +38,7 @@ store.getStore = (params = {}) => {
     debug
   } = params;
   name = keyName + name
-  let obj = {},
-    content;
+  let obj,content;
   obj = window.sessionStorage.getItem(name);
   if (validatenull(obj)) obj = window.localStorage.getItem(name);
   if (validatenull(obj)) return;
@@ -51,17 +50,17 @@ store.getStore = (params = {}) => {
   if (debug) {
     return obj;
   }
-  if (obj.dataType == 'string') {
+  if (obj.dataType === 'string') {
     content = obj.content;
-  } else if (obj.dataType == 'number') {
+  } else if (obj.dataType === 'number') {
     content = Number(obj.content);
-  } else if (obj.dataType == 'boolean') {
+  } else if (obj.dataType === 'boolean') {
     content = eval(obj.content);
-  } else if (obj.dataType == 'object') {
+  } else if (obj.dataType === 'object') {
     content = obj.content;
   }
   return content;
-},
+}
 store.removeStore = (params = {}) => {
   let {
     name,
@@ -73,7 +72,7 @@ store.removeStore = (params = {}) => {
   } else {
     window.localStorage.removeItem(name);
   }
-},
+}
 store.getAllStore = (params = {}) => {
   let list = [];
   let {
@@ -101,7 +100,7 @@ store.getAllStore = (params = {}) => {
     }
   }
   return list;
-},
+}
 store.clearStore = (params = {}) => {
   let { type } = params;
   if (type) {
