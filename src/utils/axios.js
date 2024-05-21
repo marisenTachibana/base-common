@@ -74,7 +74,7 @@ instance.interceptors.response.use(async res => {
 
   if (res.config.direct) return res //穿透直接传回所有
 
-  if ((status !== 200 && status !== 201) || code != 0) {
+  if ((status !== 200 && status !== 201) || code != '200') {
     ElMessage.error( message)
     return Promise.reject(res)
   }

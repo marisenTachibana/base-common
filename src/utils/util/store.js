@@ -1,6 +1,6 @@
 import { validatenull } from './util'
 
-const keyName = 'APPNAME';
+const keyName = 'APPNAME_';
 
 const store = {}
 

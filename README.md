@@ -20,6 +20,12 @@ $ pnpm i
 $ pnpm dev
 ```
 
+4. 打包
+
+``` bash
+$ pnpm build
+```
+
 ## git 规范
 
 + feat：新功能（feature）
@@ -55,8 +61,7 @@ $ pnpm dev
 loaded: {
         def: false,
         btn: false,
-        mod: false,
-        unit: false,
+        page: false,
     }
 ```
 我们在网络请求的时候会在请求前转入`loading` 状态 然后请求完成后会设置`loading`状态为`false`

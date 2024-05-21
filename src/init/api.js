@@ -5,6 +5,7 @@ let apis = {}
 //遍历所有文件
 for (let key in modules) {
   let module = modules[key].default
+
   let name = key.split('/').pop().replace('.js', '');
   for (let p in module) {
     let [key, method = 'get'] = `${name}/${p}`.split('|')

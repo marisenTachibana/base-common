@@ -2,10 +2,10 @@
 </script>
 
 <template>
-<router-view></router-view>
+  <router-view></router-view>
 </template>
 
 <style>
-@import url(@/assets/css/init.less);
-@import url(@/assets/css/var.less);
+@import '@/assets/css/init.less';
+@import '@/assets/css/var.less';
 </style>

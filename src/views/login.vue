@@ -1,9 +1,12 @@
 <script setup>
 import { ref ,reactive} from 'vue';
-import bcrypt from 'bcryptjs';
-import utils from '@/utils';
+import useStore from '@/store/user'
+import { ElMessage } from 'element-plus'
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 const ruleFormRef=ref();
-const cost = 10; //加密盐值
+
 const loginForm = ref({
   username: '',
   password: '',
@@ -18,12 +21,22 @@ const rules = reactive({
     { required: true, message: '密码不能为空', trigger: 'blur' },
   ],
 })
-const onLogin =  () => {
+
+const onLogin =  async() => {
   //验证
-  if(ruleFormRef.value.validate()){
-    
+  let v= await ruleFormRef.value.validate()
+  if(!v){return}
+
+  let store=useStore();
+  let r=await store.Login(loginForm.value)
+  if(r){
+    ElMessage({
+      message: '登录成功',
+      type: 'success',
+    })
+    router.push('/home');
   }
-  
+
 };
 </script>
 <template>
@@ -59,7 +72,7 @@ const onLogin =  () => {
           </el-form-item>
         </el-form>
 
-        <el-button class="login-button" type="primary" @click="onLogin"
+        <el-button class="login-button" type="primary" @click="onLogin" :loading="$loaded.btn"
           >登&emsp;录</el-button
         >
       </div>
